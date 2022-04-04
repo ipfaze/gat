@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"errors"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"regexp"
 	"strings"
@@ -25,16 +26,16 @@ func execute(args []string) int {
 		return 0
 	}
 
-	file, err := openFile(args)
-	if isError(err) {
-		return handleError(1, err)
-	}
-
 	if nA == 2 {
-		err = readFile(file)
+		err := readFile(args)
 		if isError(err) {
 			return handleError(2, err)
 		}
+	}
+
+	file, err := openFile(args)
+	if isError(err) {
+		return handleError(1, err)
 	}
 
 	defer file.Close()
@@ -47,17 +48,14 @@ func execute(args []string) int {
 				return handleError(3, err)
 			}
 			Print(nb)
-
-			break
 		case "-l", "--lines":
 			nb, err := countLines(file)
 			if isError(err) {
 				return handleError(4, err)
 			}
 			Print(nb)
-			break
 		default:
-			return handleError(-1, errors.New("Invalid argument"))
+			return handleError(-1, errors.New("invalid argument"))
 		}
 	}
 
@@ -69,28 +67,25 @@ func execute(args []string) int {
 				return handleError(10, err)
 			}
 			Print(nb)
-			break
 		case "-fi":
 			nb, err := findAndCountWordsCaseInsensitive(file, args[2])
 			if isError(err) {
 				return handleError(12, err)
 			}
 			Print(nb)
-			break
 		case "-r", "--regexp":
 			nb, err := regexCountWords(file, args[2])
 			if isError(err) {
 				return handleError(13, err)
 			}
 			Print(nb)
-			break
 		default:
-			return handleError(-1, errors.New("Invalid argument"))
+			return handleError(-1, errors.New("invalid argument"))
 		}
 	}
 
 	if nA > 4 {
-		return handleError(-2, errors.New("Invalid number of argument"))
+		return handleError(-2, errors.New("invalid number of argument"))
 	}
 
 	return 0
@@ -106,14 +101,12 @@ func openFile(args []string) (*os.File, error) {
 	return file, nil
 }
 
-func readFile(file *os.File) error {
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		fmt.Println(scanner.Text())
-	}
-	if err := scanner.Err(); err != nil {
+func readFile(args []string) error {
+	content, err := ioutil.ReadFile(args[len(args)-1])
+	if isError(err) {
 		return err
 	}
+	Print(string(content))
 	return nil
 }
 

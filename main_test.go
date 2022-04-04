@@ -35,9 +35,8 @@ func TestHandleError(t *testing.T) {
 
 func TestReadFile(t *testing.T) {
 	args := []string{"", "./test.txt"}
-	file, _ := openFile(args)
 
-	err := readFile(file)
+	err := readFile(args)
 	if err != nil {
 		t.Error("Expected to read file and print it's content")
 	}
