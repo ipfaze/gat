@@ -6,7 +6,7 @@ import (
 )
 
 func TestOpenFile(t *testing.T) {
-	args := []string{"", "./test.txt"}
+	args := []string{"", "./tests/test.txt"}
 	_, err := openFile(args)
 	if err != nil {
 		t.Error("Expected to open the file 'test.txt'")
@@ -34,7 +34,7 @@ func TestHandleError(t *testing.T) {
 }
 
 func TestReadFile(t *testing.T) {
-	args := []string{"", "./test.txt"}
+	args := []string{"", "./tests/test.txt"}
 
 	err := readFile(args)
 	if err != nil {
@@ -43,7 +43,7 @@ func TestReadFile(t *testing.T) {
 }
 
 func TestCountWords(t *testing.T) {
-	args := []string{"", "./test.txt"}
+	args := []string{"", "./tests/test.txt"}
 	file, _ := openFile(args)
 
 	nb, err := countWords(file)
@@ -57,7 +57,7 @@ func TestCountWords(t *testing.T) {
 }
 
 func TestCountWordsFileMultipleLines(t *testing.T) {
-	args := []string{"", "./test2.txt"}
+	args := []string{"", "./tests/test2.txt"}
 	file, _ := openFile(args)
 
 	nb, err := countWords(file)
@@ -71,7 +71,7 @@ func TestCountWordsFileMultipleLines(t *testing.T) {
 }
 
 func TestCountWordsFileEmpty(t *testing.T) {
-	args := []string{"", "./test3.txt"}
+	args := []string{"", "./tests/test3.txt"}
 	file, _ := openFile(args)
 
 	nb, err := countWords(file)
@@ -85,7 +85,7 @@ func TestCountWordsFileEmpty(t *testing.T) {
 }
 
 func TestFindAndCountWords(t *testing.T) {
-	args := []string{"", "./test.txt"}
+	args := []string{"", "./tests/test.txt"}
 	file, _ := openFile(args)
 
 	nb, err := findAndCountWords(file, "Yoda")
@@ -99,7 +99,7 @@ func TestFindAndCountWords(t *testing.T) {
 }
 
 func TestFindAndCountWordsFileMultipleLines(t *testing.T) {
-	args := []string{"", "./test2.txt"}
+	args := []string{"", "./tests/test2.txt"}
 	file, _ := openFile(args)
 
 	nb, err := findAndCountWords(file, "Yoda")
@@ -113,7 +113,7 @@ func TestFindAndCountWordsFileMultipleLines(t *testing.T) {
 }
 
 func TestFindAndCountWordsFileEmpty(t *testing.T) {
-	args := []string{"", "./test3.txt"}
+	args := []string{"", "./tests/test3.txt"}
 	file, _ := openFile(args)
 
 	nb, err := findAndCountWords(file, "Yoda")
@@ -127,7 +127,7 @@ func TestFindAndCountWordsFileEmpty(t *testing.T) {
 }
 
 func TestFindAndCountWordsCaseInsensitive(t *testing.T) {
-	args := []string{"", "./test.txt"}
+	args := []string{"", "./tests/test.txt"}
 	file, _ := openFile(args)
 
 	nb, err := findAndCountWordsCaseInsensitive(file, "yOdA")
@@ -141,7 +141,7 @@ func TestFindAndCountWordsCaseInsensitive(t *testing.T) {
 }
 
 func TestFindAndCountWordsCaseInsensitiveFileMultipleLines(t *testing.T) {
-	args := []string{"", "./test2.txt"}
+	args := []string{"", "./tests/test2.txt"}
 	file, _ := openFile(args)
 
 	nb, err := findAndCountWordsCaseInsensitive(file, "yODa")
@@ -155,7 +155,7 @@ func TestFindAndCountWordsCaseInsensitiveFileMultipleLines(t *testing.T) {
 }
 
 func TestFindAndCountWordsCaseInsensitiveFileEmpty(t *testing.T) {
-	args := []string{"", "./test3.txt"}
+	args := []string{"", "./tests/test3.txt"}
 	file, _ := openFile(args)
 
 	nb, err := findAndCountWordsCaseInsensitive(file, "YoDa")
@@ -169,7 +169,7 @@ func TestFindAndCountWordsCaseInsensitiveFileEmpty(t *testing.T) {
 }
 
 func TestInvalidRegexCountWords(t *testing.T) {
-	args := []string{"", "./test.txt"}
+	args := []string{"", "./tests/test.txt"}
 	file, _ := openFile(args)
 
 	nb, err := regexCountWords(file, "(")
@@ -182,7 +182,7 @@ func TestInvalidRegexCountWords(t *testing.T) {
 	}
 }
 func TestRegexCountWords(t *testing.T) {
-	args := []string{"", "./test.txt"}
+	args := []string{"", "./tests/test.txt"}
 	file, _ := openFile(args)
 
 	nb, err := regexCountWords(file, "Yoda")
@@ -196,7 +196,7 @@ func TestRegexCountWords(t *testing.T) {
 }
 
 func TestRegexCountWordsFileMultipleLines(t *testing.T) {
-	args := []string{"", "./test2.txt"}
+	args := []string{"", "./tests/test2.txt"}
 	file, _ := openFile(args)
 
 	nb, err := regexCountWords(file, "lorem")
@@ -210,7 +210,7 @@ func TestRegexCountWordsFileMultipleLines(t *testing.T) {
 }
 
 func Test2RegexCountWordsFileMultipleLines(t *testing.T) {
-	args := []string{"", "./test2.txt"}
+	args := []string{"", "./tests/test2.txt"}
 	file, _ := openFile(args)
 
 	nb, err := regexCountWords(file, "lorem\\.")
@@ -224,7 +224,7 @@ func Test2RegexCountWordsFileMultipleLines(t *testing.T) {
 }
 
 func TestRegexCountWordsFileEmpty(t *testing.T) {
-	args := []string{"", "./test3.txt"}
+	args := []string{"", "./tests/test3.txt"}
 	file, _ := openFile(args)
 
 	nb, err := regexCountWords(file, "lorem")
@@ -238,7 +238,7 @@ func TestRegexCountWordsFileEmpty(t *testing.T) {
 }
 
 func TestCountLines(t *testing.T) {
-	args := []string{"", "./test.txt"}
+	args := []string{"", "./tests/test.txt"}
 	file, _ := openFile(args)
 
 	nb, err := countLines(file)
@@ -252,7 +252,7 @@ func TestCountLines(t *testing.T) {
 }
 
 func TestCountLinesFileMultipleLines(t *testing.T) {
-	args := []string{"", "./test2.txt"}
+	args := []string{"", "./tests/test2.txt"}
 	file, _ := openFile(args)
 
 	nb, err := countLines(file)
@@ -266,7 +266,7 @@ func TestCountLinesFileMultipleLines(t *testing.T) {
 }
 
 func TestCountLinesFileEmpty(t *testing.T) {
-	args := []string{"", "./test3.txt"}
+	args := []string{"", "./tests/test3.txt"}
 	file, _ := openFile(args)
 
 	nb, err := countLines(file)
@@ -298,7 +298,7 @@ func TestExecuteWithHelpOption(t *testing.T) {
 }
 
 func TestExecuteWithFilePath(t *testing.T) {
-	a := []string{"gat", "test.txt"}
+	a := []string{"gat", "./tests/test.txt"}
 	code := execute(a)
 
 	if code != 0 {
@@ -316,7 +316,7 @@ func TestExecuteWithPathToInexistentFile(t *testing.T) {
 }
 
 func TestExecuteCountWords(t *testing.T) {
-	a := []string{"gat", "-w", "test.txt"}
+	a := []string{"gat", "-w", "./tests/test.txt"}
 	code := execute(a)
 
 	if code != 0 {
@@ -325,7 +325,7 @@ func TestExecuteCountWords(t *testing.T) {
 }
 
 func TestExecuteFindAndCountWords(t *testing.T) {
-	a := []string{"gat", "-f", "Yoda", "test.txt"}
+	a := []string{"gat", "-f", "Yoda", "./tests/test.txt"}
 	code := execute(a)
 
 	if code != 0 {
@@ -334,7 +334,7 @@ func TestExecuteFindAndCountWords(t *testing.T) {
 }
 
 func TestExecuteFindAndCountWordsCaseInsensitive(t *testing.T) {
-	a := []string{"gat", "-fi", "Yoda", "test.txt"}
+	a := []string{"gat", "-fi", "Yoda", "./tests/test.txt"}
 	code := execute(a)
 
 	if code != 0 {
@@ -343,7 +343,7 @@ func TestExecuteFindAndCountWordsCaseInsensitive(t *testing.T) {
 }
 
 func TestExecuteRegexCountWords(t *testing.T) {
-	a := []string{"gat", "-r", "lorem\\.", "test.txt"}
+	a := []string{"gat", "-r", "lorem\\.", "./tests/test.txt"}
 	code := execute(a)
 
 	if code != 0 {
@@ -352,7 +352,7 @@ func TestExecuteRegexCountWords(t *testing.T) {
 }
 
 func TestExecuteInvalidRegexCountWords(t *testing.T) {
-	a := []string{"gat", "-r", "(", "test.txt"}
+	a := []string{"gat", "-r", "(", "./tests/test.txt"}
 	code := execute(a)
 
 	if code == 0 {
@@ -361,7 +361,7 @@ func TestExecuteInvalidRegexCountWords(t *testing.T) {
 }
 
 func TestExecuteCountLines(t *testing.T) {
-	a := []string{"gat", "-l", "test.txt"}
+	a := []string{"gat", "-l", "./tests/test.txt"}
 	code := execute(a)
 
 	if code != 0 {
